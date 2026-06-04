@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InAmigos Foundation — Website Feature Blueprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF6F0;
+    --ink: #1A1208;
+    --saffron: #F4831F;
+    --saffron-light: #FDEBD5;
+    --forest: #1D5C3A;
+    --forest-light: #D4EDDA;
+    --clay: #C4532A;
+    --gold: #D4A017;
+    --mist: #EBE5DC;
+    --shadow: rgba(26,18,8,0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-left {
+    background: var(--forest);
+    padding: 56px 24px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--saffron);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+    width: fit-content;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 8vw, 72px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.08;
+    margin-bottom: 18px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--saffron);
+  }
+
+  .hero-sub {
+    color: rgba(255,255,255,0.65);
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 36px;
+  }
+
+  .feature-count {
+    display: flex;
+    gap: 28px;
+  }
+
+  .count-item { text-align: center; }
+
+  .count-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--saffron);
+    line-height: 1;
+  }
+
+  .count-label {
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-top: 4px;
+  }
+
+  .hero-right {
+    background: var(--cream);
+    padding: 40px 24px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--saffron);
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+
+  .hero-right h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 5vw, 32px);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 24px;
+  }
+
+  .feature-pill-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .feature-pill {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    background: #fff;
+    border: 1px solid var(--mist);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.25s ease;
+  }
+
+  .feature-pill:active {
+    border-color: var(--saffron);
+    background: var(--saffron-light);
+  }
+
+  .pill-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+
+  .pill-text { flex: 1; }
+
+  .pill-name {
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--ink);
+  }
+
+  .pill-desc {
+    font-size: 11px;
+    color: #888;
+    margin-top: 2px;
+  }
+
+  .pill-arrow {
+    color: var(--saffron);
+    font-size: 16px;
+  }
+
+  /* ── FEATURE CARDS ── */
+  .features-grid {
+    padding: 60px 20px;
+    background: var(--ink);
+  }
+
+  .grid-header {
+    margin-bottom: 40px;
+  }
+
+  .grid-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 6vw, 52px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+
+  .grid-header p {
+    color: rgba(255,255,255,0.45);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .cards-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 12px;
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+
+  .card.featured {
+    background: var(--saffron);
+    border-color: var(--saffron);
+  }
+
+  .card.tall {
+    background: var(--forest);
+    border-color: var(--forest);
+  }
+
+  .card-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+  }
+
+  .card.featured .card-num { color: rgba(255,255,255,0.5); }
+
+  .card-icon {
+    font-size: 30px;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+
+  .card p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.65;
+  }
+
+  .card.featured p { color: rgba(255,255,255,0.85); }
+
+  .card-tag {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 4px 12px;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 20px;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .card.featured .card-tag {
+    border-color: rgba(255,255,255,0.5);
+    color: #fff;
+  }
+
+  .sub-features {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .sub-feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 8px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+  }
+
+  /* ── WIREFRAME ── */
+  .wireframe-section {
+    padding: 60px 20px;
+    background: var(--cream);
+  }
+
+  .wireframe-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 6vw, 46px);
+    font-weight: 900;
+    color: var(--ink);
+    margin-bottom: 10px;
+    line-height: 1.15;
+  }
+
+  .wireframe-section > p {
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 36px;
+    line-height: 1.6;
+  }
+
+  .browser-mock {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 16px 60px rgba(26,18,8,0.13);
+    overflow: hidden;
+    border: 1px solid var(--mist);
+  }
+
+  .browser-bar {
+    background: var(--mist);
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .browser-dots { display: flex; gap: 5px; }
+
+  .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+  }
+
+  .dot-r { background: #FF5F57; }
+  .dot-y { background: #FFBD2E; }
+  .dot-g { background: #28CA41; }
+
+  .browser-url {
+    flex: 1;
+    background: #fff;
+    border-radius: 5px;
+    padding: 4px 10px;
+    font-size: 10px;
+    color: #888;
+    font-family: monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Mobile nav inside wireframe */
+  .wl-nav {
+    background: var(--forest);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .wl-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .wl-logo span { color: var(--saffron); }
+
+  .wl-nav-links { display: none; }
+
+  .wl-hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+  }
+
+  .wl-hamburger span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: rgba(255,255,255,0.7);
+    border-radius: 2px;
+  }
+
+  .wl-cta-btn {
+    background: var(--saffron);
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .wl-hero {
+    background: linear-gradient(135deg, #1D5C3A 0%, #0F3020 100%);
+    padding: 32px 16px;
+  }
+
+  .wl-hero-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 5vw, 32px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  .wl-hero-text h1 em { color: var(--saffron); font-style: italic; }
+
+  .wl-hero-text p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.6;
+    margin-bottom: 18px;
+  }
+
+  .wl-btn-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--saffron);
+    color: #fff;
+    border: none;
+    padding: 9px 18px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.35);
+    padding: 9px 18px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  .wl-hero-img { display: none; }
+
+  .wl-stats {
+    background: var(--saffron);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .wl-stat {
+    padding: 14px 10px;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .wl-stat:nth-child(2n) { border-right: none; }
+  .wl-stat:nth-child(3), .wl-stat:nth-child(4) { border-bottom: none; }
+
+  .wl-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .wl-stat-label {
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .wl-features {
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background: var(--cream);
+  }
+
+  .wl-feature-card {
+    background: #fff;
+    border: 1px solid var(--mist);
+    border-radius: 10px;
+    padding: 18px 16px;
+    position: relative;
+  }
+
+  .wl-feature-card .wf-label {
+    position: absolute;
+    top: -9px;
+    left: 14px;
+    background: var(--saffron);
+    color: #fff;
+    font-size: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-weight: 500;
+  }
+
+  .wl-feature-card .wf-icon {
+    font-size: 24px;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .wl-feature-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 5px;
+  }
+
+  .wl-feature-card p {
+    font-size: 11px;
+    color: #999;
+    line-height: 1.5;
+  }
+
+  .wl-donation {
+    background: var(--forest);
+    padding: 28px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .wl-donation-text h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .wl-donation-text p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+  }
+
+  .wl-donation-form {
+    background: rgba(255,255,255,0.07);
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 18px 16px;
+  }
+
+  .donation-amounts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+    margin-bottom: 12px;
+  }
+
+  .amt-btn {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.8);
+    padding: 7px 2px;
+    border-radius: 5px;
+    font-size: 11px;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .amt-btn.active {
+    background: var(--saffron);
+    border-color: var(--saffron);
+    color: #fff;
+  }
+
+  .donation-input {
+    width: 100%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 5px;
+    padding: 9px 10px;
+    font-size: 12px;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+
+  .donate-submit {
+    width: 100%;
+    background: var(--saffron);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 11px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .wl-footer {
+    background: var(--ink);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .wl-footer p { font-size: 10px; color: rgba(255,255,255,0.3); }
+
+  .wl-footer-links {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .wl-footer-links span { font-size: 10px; color: rgba(255,255,255,0.3); cursor: pointer; }
+
+  /* ── ANNOTATIONS ── */
+  .annotations {
+    padding: 60px 20px;
+    background: var(--mist);
+  }
+
+  .annotations h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 6vw, 44px);
+    font-weight: 900;
+    color: var(--ink);
+    margin-bottom: 36px;
+    line-height: 1.15;
+  }
+
+  .anno-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .anno-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 22px 18px;
+    border-top: 4px solid var(--saffron);
+    box-shadow: 0 2px 16px var(--shadow);
+    transition: transform 0.25s ease;
+  }
+
+  .anno-card:nth-child(2) { border-top-color: var(--forest); }
+  .anno-card:nth-child(3) { border-top-color: var(--clay); }
+  .anno-card:nth-child(4) { border-top-color: var(--gold); }
+  .anno-card:nth-child(5) { border-top-color: #6B4FBB; }
+
+  .anno-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 900;
+    color: var(--mist);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .anno-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .anno-body {
+    font-size: 13px;
+    color: #777;
+    line-height: 1.6;
+  }
+
+  .anno-why {
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--mist);
+    font-size: 11px;
+    color: var(--saffron);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  .anno-card:nth-child(2) .anno-why { color: var(--forest); }
+  .anno-card:nth-child(3) .anno-why { color: var(--clay); }
+  .anno-card:nth-child(4) .anno-why { color: var(--gold); }
+  .anno-card:nth-child(5) .anno-why { color: #6B4FBB; }
+
+  /* ── SITE FOOTER ── */
+  .site-footer {
+    background: var(--ink);
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .footer-brand span { color: var(--saffron); }
+
+  .footer-note {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    line-height: 1.6;
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .card { animation: fadeUp 0.55s ease both; }
+  .card:nth-child(1) { animation-delay: 0.05s; }
+  .card:nth-child(2) { animation-delay: 0.12s; }
+  .card:nth-child(3) { animation-delay: 0.19s; }
+  .card:nth-child(4) { animation-delay: 0.26s; }
+  .card:nth-child(5) { animation-delay: 0.33s; }
+
+  /* ── TABLET (600px+) ── */
+  @media (min-width: 600px) {
+    .hero-left  { padding: 64px 40px; }
+    .hero-right { padding: 48px 40px; }
+
+    .features-grid  { padding: 80px 40px; }
+    .wireframe-section { padding: 80px 40px; }
+    .annotations    { padding: 80px 40px; }
+    .site-footer    { padding: 56px 40px; flex-direction: row; justify-content: space-between; text-align: left; }
+    .footer-note    { text-align: right; }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .card.featured { grid-column: 1 / 3; }
+
+    .anno-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .anno-card:last-child { grid-column: 1 / 3; }
+
+    .wl-stats { grid-template-columns: repeat(4, 1fr); }
+    .wl-stat  { border-bottom: none; }
+    .wl-stat:nth-child(2n) { border-right: 1px solid rgba(255,255,255,0.2); }
+    .wl-stat:last-child    { border-right: none; }
+
+    .wl-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      padding: 24px;
+    }
+
+    .wl-features .wl-feature-card:last-child { grid-column: 1 / 3; }
+  }
+
+  /* ── DESKTOP (900px+) ── */
+  @media (min-width: 900px) {
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+    }
+
+    .hero-left {
+      padding: 80px 60px;
+      position: relative;
+    }
+
+    .hero-left::after {
+      content: '';
+      position: absolute;
+      right: -60px;
+      top: 0;
+      width: 120px;
+      height: 100%;
+      background: var(--forest);
+      clip-path: polygon(0 0, 50% 0, 100% 50%, 50% 100%, 0 100%);
+      z-index: 2;
+    }
+
+    .hero-right { padding: 80px 60px 80px 100px; }
+
+    .hero-title { font-size: clamp(42px, 5vw, 72px); }
+
+    .features-grid { padding: 100px 60px; }
+
+    .grid-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .grid-header p { text-align: right; max-width: 260px; }
+
+    .cards-grid {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+    }
+
+    .card.featured { grid-column: 1 / 3; }
+    .card.tall {
+      grid-row: 1 / 3;
+      grid-column: 3 / 4;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .wireframe-section { padding: 100px 60px; }
+
+    .wl-nav { padding: 14px 24px; }
+    .wl-nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+    .wl-nav-links li { font-size: 12px; color: rgba(255,255,255,0.7); cursor: pointer; }
+    .wl-nav-links li.active { color: var(--saffron); }
+    .wl-hamburger { display: none; }
+
+    .wl-hero {
+      padding: 48px 32px;
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+    .wl-hero-text { flex: 1; }
+    .wl-hero-img {
+      display: flex;
+      flex: 0 0 180px;
+      height: 140px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.08);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.4);
+      font-size: 13px;
+    }
+    .img-placeholder-icon { font-size: 30px; }
+
+    .wl-stats { grid-template-columns: repeat(4, 1fr); }
+
+    .wl-features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 32px 24px;
+    }
+    .wl-features .wl-feature-card:last-child { grid-column: auto; }
+
+    .wl-donation {
+      flex-direction: row;
+      padding: 40px 32px;
+      align-items: center;
+    }
+    .wl-donation-text { flex: 1; }
+    .wl-donation-form { flex: 0 0 280px; }
+
+    .wl-footer {
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 18px 32px;
+      text-align: left;
+    }
+
+    .annotations { padding: 100px 60px; }
+    .anno-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+    }
+    .anno-card:last-child { grid-column: auto; }
+
+    .site-footer { padding: 60px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ───── HERO ───── -->
+<section class="hero">
+  <div class="hero-left">
+    <span class="badge">✦ NGO Website Blueprint</span>
+    <h1 class="hero-title">Build a Site That <em>Moves</em> People to Act</h1>
+    <p class="hero-sub">A visual feature guide for InAmigos Foundation's website — designed to inspire donations, recruit volunteers, and amplify impact.</p>
+    <div class="feature-count">
+      <div class="count-item">
+        <div class="count-num">5</div>
+        <div class="count-label">Key Features</div>
+      </div>
+      <div class="count-item">
+        <div class="count-num">1</div>
+        <div class="count-label">Mission</div>
+      </div>
+      <div class="count-item">
+        <div class="count-num">∞</div>
+        <div class="count-label">Impact</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="section-label">Feature Overview</div>
+    <h2>Five sections every NGO website needs</h2>
+    <div class="feature-pill-list">
+      <a class="feature-pill" href="#features">
+        <div class="pill-icon" style="background:#FDEBD5">❤️</div>
+        <div class="pill-text">
+          <div class="pill-name">Donation Section</div>
+          <div class="pill-desc">One-click giving with amount presets</div>
+        </div>
+        <span class="pill-arrow">→</span>
+      </a>
+      <a class="feature-pill" href="#features">
+        <div class="pill-icon" style="background:#D4EDDA">🤝</div>
+        <div class="pill-text">
+          <div class="pill-name">Volunteer Registration</div>
+          <div class="pill-desc">Capture interested helpers instantly</div>
+        </div>
+        <span class="pill-arrow">→</span>
+      </a>
+      <a class="feature-pill" href="#features">
+        <div class="pill-icon" style="background:#FCE8D4">📊</div>
+        <div class="pill-text">
+          <div class="pill-name">Impact Showcase</div>
+          <div class="pill-desc">Live counters and success stories</div>
+        </div>
+        <span class="pill-arrow">→</span>
+      </a>
+      <a class="feature-pill" href="#features">
+        <div class="pill-icon" style="background:#F0EBF8">💬</div>
+        <div class="pill-text">
+          <div class="pill-name">Testimonials</div>
+          <div class="pill-desc">Social proof from real beneficiaries</div>
+        </div>
+        <span class="pill-arrow">→</span>
+      </a>
+      <a class="feature-pill" href="#features">
+        <div class="pill-icon" style="background:#FFF3CD">📣</div>
+        <div class="pill-text">
+          <div class="pill-name">Active Campaigns</div>
+          <div class="pill-desc">Urgency-driven calls to action</div>
+        </div>
+        <span class="pill-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ───── FEATURE CARDS ───── -->
+<section class="features-grid" id="features">
+  <div class="grid-header">
+    <h2>The 5 Essential Website Features</h2>
+    <p>Each section is designed with a specific conversion goal in mind.</p>
+  </div>
+
+  <div class="cards-grid">
+    <div class="card featured">
+      <div class="card-num">01</div>
+      <span class="card-icon">❤️</span>
+      <h3>Donation Section</h3>
+      <p>The heart of every NGO website. Offer preset donation amounts (₹100, ₹500, ₹1000, custom), a clear progress bar toward a fundraising goal, and a secure one-click payment flow. Add recurring donation options and tax-exemption (80G) reminders to maximise conversion.</p>
+      <span class="card-tag">Conversion critical</span>
+    </div>
+
+    <div class="card tall">
+      <div>
+        <div class="card-num">03</div>
+        <span class="card-icon">📊</span>
+        <h3>Impact Showcase</h3>
+        <p>Numbers that prove your work is real. Animated counters for lives touched, meals served, trees planted, or scholarships funded turn abstract mission into tangible proof.</p>
+        <span class="card-tag">Trust builder</span>
+      </div>
+      <div class="sub-features">
+        <div class="sub-feature"><span>🎓</span> Scholarships funded</div>
+        <div class="sub-feature"><span>🌱</span> Trees planted</div>
+        <div class="sub-feature"><span>🍱</span> Meals distributed</div>
+        <div class="sub-feature"><span>👨‍👩‍👧</span> Families reached</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-num">02</div>
+      <span class="card-icon">🤝</span>
+      <h3>Volunteer Registration</h3>
+      <p>A simple form asking for name, skills, availability, and city. Makes it effortless to join. Show how many volunteers have already signed up to trigger social proof.</p>
+      <span class="card-tag">Community growth</span>
+    </div>
+
+    <div class="card">
+      <div class="card-num">04</div>
+      <span class="card-icon">💬</span>
+      <h3>Testimonials</h3>
+      <p>Quotes and short videos from beneficiaries, donors, and volunteers. Authentic stories overcome doubt better than any statistic. Include photo, name, and location for credibility.</p>
+      <span class="card-tag">Social proof</span>
+    </div>
+
+    <div class="card">
+      <div class="card-num">05</div>
+      <span class="card-icon">📣</span>
+      <h3>Active Campaigns</h3>
+      <p>Highlight ongoing drives — education kits, flood relief, tree plantation. Show a progress bar, deadline, and a clear "Support This" CTA to create urgency and boost engagement.</p>
+      <span class="card-tag">Urgency driver</span>
+    </div>
+  </div>
+</section>
+
+<!-- ───── WIREFRAME MOCK ───── -->
+<section class="wireframe-section">
+  <div class="section-label">Visual Wireframe</div>
+  <h2>How it looks in the browser</h2>
+  <p>A lo-fi preview of the recommended page layout — from navigation through to the donation form.</p>
+
+  <div class="browser-mock">
+    <div class="browser-bar">
+      <div class="browser-dots">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+      </div>
+      <div class="browser-url">https://www.inamigosfoundation.org</div>
+    </div>
+
+    <div class="webpage-layout">
+      <nav class="wl-nav">
+        <div class="wl-logo">InAmigos <span>Foundation</span></div>
+        <ul class="wl-nav-links">
+          <li class="active">Home</li>
+          <li>About</li>
+          <li>Campaigns</li>
+          <li>Impact</li>
+          <li>Volunteer</li>
+          <li>Blog</li>
+        </ul>
+        <div class="wl-hamburger">
+          <span></span><span></span><span></span>
+        </div>
+        <button class="wl-cta-btn">Donate ❤️</button>
+      </nav>
+
+      <div class="wl-hero">
+        <div class="wl-hero-text">
+          <h1>Empowering Communities, <em>One Life at a Time</em></h1>
+          <p>Join thousands of changemakers. Together we fund education, plant trees, and feed families across India.</p>
+          <div class="wl-btn-row">
+            <button class="btn-primary">Donate Now</button>
+            <button class="btn-outline">Become a Volunteer</button>
+          </div>
+        </div>
+        <div class="wl-hero-img">
+          <span class="img-placeholder-icon">🌱</span>
+          Hero Image
+        </div>
+      </div>
+
+      <div class="wl-stats">
+        <div class="wl-stat">
+          <div class="wl-stat-num">12,400+</div>
+          <div class="wl-stat-label">Lives Touched</div>
+        </div>
+        <div class="wl-stat">
+          <div class="wl-stat-num">₹48L</div>
+          <div class="wl-stat-label">Funds Raised</div>
+        </div>
+        <div class="wl-stat">
+          <div class="wl-stat-num">860</div>
+          <div class="wl-stat-label">Volunteers</div>
+        </div>
+        <div class="wl-stat">
+          <div class="wl-stat-num">34</div>
+          <div class="wl-stat-label">Campaigns</div>
+        </div>
+      </div>
+
+      <div class="wl-features">
+        <div class="wl-feature-card">
+          <span class="wf-label">Feature 3</span>
+          <span class="wf-icon">📊</span>
+          <h4>Our Impact</h4>
+          <p>Animated live counters showing real-time statistics across all programs.</p>
+        </div>
+        <div class="wl-feature-card">
+          <span class="wf-label">Feature 5</span>
+          <span class="wf-icon">📣</span>
+          <h4>Active Campaigns</h4>
+          <p>Ongoing drives with progress bars, deadlines, and direct actions.</p>
+        </div>
+        <div class="wl-feature-card">
+          <span class="wf-label">Feature 4</span>
+          <span class="wf-icon">💬</span>
+          <h4>Testimonials</h4>
+          <p>Stories from beneficiaries, donors, and volunteers.</p>
+        </div>
+      </div>
+
+      <div class="wl-donation">
+        <div class="wl-donation-text">
+          <h3>Make a Difference Today</h3>
+          <p>Your donation funds meals, textbooks, and training programs. Every rupee is accounted for. Donations are 80G tax-exempt.</p>
+        </div>
+        <div class="wl-donation-form">
+          <div style="font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">Choose Amount</div>
+          <div class="donation-amounts">
+            <div class="amt-btn">₹100</div>
+            <div class="amt-btn active">₹500</div>
+            <div class="amt-btn">₹1000</div>
+            <div class="amt-btn">Custom</div>
+          </div>
+          <input class="donation-input" type="text" placeholder="Enter custom amount (₹)" />
+          <button class="donate-submit">Donate ₹500 →</button>
+        </div>
+      </div>
+
+      <div class="wl-footer">
+        <p>© 2025 InAmigos Foundation · All rights reserved</p>
+        <div class="wl-footer-links">
+          <span>Privacy Policy</span>
+          <span>80G Certificate</span>
+          <span>Contact</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───── ANNOTATIONS ───── -->
+<section class="annotations">
+  <div class="section-label">Feature Notes</div>
+  <h2>Why each feature matters</h2>
+
+  <div class="anno-grid">
+    <div class="anno-card">
+      <div class="anno-num">01</div>
+      <div class="anno-title">Donation Section</div>
+      <div class="anno-body">Preset amounts reduce decision fatigue. Progress bars toward a goal create urgency. Recurring options grow long-term revenue. 80G badge builds trust.</div>
+      <div class="anno-why">↑ Drives direct revenue</div>
+    </div>
+    <div class="anno-card">
+      <div class="anno-num">02</div>
+      <div class="anno-title">Volunteer Form</div>
+      <div class="anno-body">Short form (name, skill, city, availability). Show volunteer count for social proof. Auto-email confirmation keeps momentum alive after sign-up.</div>
+      <div class="anno-why">↑ Grows community</div>
+    </div>
+    <div class="anno-card">
+      <div class="anno-num">03</div>
+      <div class="anno-title">Impact Showcase</div>
+      <div class="anno-body">Animated counters make abstract numbers feel real. Before/after photos from programs. Downloadable annual impact report for corporate donors.</div>
+      <div class="anno-why">↑ Builds credibility</div>
+    </div>
+    <div class="anno-card">
+      <div class="anno-num">04</div>
+      <div class="anno-title">Testimonials</div>
+      <div class="anno-body">Photos + first-name + location = authenticity. Video testimonials outperform text 3×. Rotate donor, volunteer, and beneficiary voices for diversity.</div>
+      <div class="anno-why">↑ Overcomes scepticism</div>
+    </div>
+    <div class="anno-card">
+      <div class="anno-num">05</div>
+      <div class="anno-title">Active Campaigns</div>
+      <div class="anno-body">Show goal vs raised with a progress bar. Add a deadline for urgency. Each campaign page should have a unique URL for easy sharing on social media.</div>
+      <div class="anno-why">↑ Creates urgency</div>
+    </div>
+  </div>
+</section>
+
+<!-- ───── SITE FOOTER ───── -->
+<footer class="site-footer">
+  <div>
+    <div class="footer-brand">InAmigos <span>Foundation</span></div>
+    <div style="color:rgba(255,255,255,0.3);font-size:12px;margin-top:6px;">NGO Website Feature Blueprint · Task 4</div>
+  </div>
+  <div class="footer-note">
+    Designed as a visual proposal<br>
+    for InAmigos Foundation's website redesign
+  </div>
+</footer>
+
+</body>
+</html>
